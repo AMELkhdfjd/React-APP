@@ -5,9 +5,15 @@ import {Card,CardImg, CardImgOverlay,CardText, CardBody, CardTitle} from 'reacts
 
 
 class DishdetailComponent extends Component{
-    constructor(props){
-        super(props);
-      
+    componentDidMount()
+    {
+        console.log("dish detail component componenetDidmount  invoked");
+
+    }
+    componentDidUpdate()
+    {
+        console.log("dish detail component componenetDidupdate  invoked");
+
     }
 
     
@@ -35,6 +41,8 @@ class DishdetailComponent extends Component{
      
     }
     render() {
+        console.log("dish detail component render  invoked");
+
       
         if (this.props.dish != null)
         {

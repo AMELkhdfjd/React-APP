@@ -5,11 +5,20 @@ import Main from './MainComponent';
 class Menu extends Component{
     constructor(props){
         super(props);
+        console.log("menu component constructor invoked");
       
     }
+    componentDidMount()
+    {
+        console.log("menu component componenetDidmount  invoked");
+
+    }
+
    
     
     render(){
+        console.log("menu component render  invoked");
+
        
             const menu = this.props.dishes.map( (dish) => {
                 return (
