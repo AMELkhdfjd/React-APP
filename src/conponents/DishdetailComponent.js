@@ -96,10 +96,6 @@ import {Card,CardImg,CardText, CardBody, CardTitle} from 'reactstrap';
 //? use the capital when defining functions
 
 
-   
-   
-
-    
 
     function RenderComment({comments})
     {
