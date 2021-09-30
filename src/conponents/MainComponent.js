@@ -7,11 +7,12 @@ import {COMMENTS} from '../shared/comments';
 import {PROMOTIONS} from '../shared/promotions';
 
 
-import DishDetail from './DishdetailComponent';
+import DishdetailComponent from './DishdetailComponent';
 import Header from './headerComponent';
 import Footer from './footerCompnent';
 import Home from './homeComonent.js';
 import Contact from './Contactscomponent';
+import  About from './aboutuscomponent';
 // for the react router
 import {Switch, Route, Redirect} from 'react-router-dom';
 
@@ -47,7 +48,7 @@ class Main extends Component {
     this.state = { 
       dishes : DISHES,
       selectedDish:null,
-      Comments : COMMENTS,
+      comments : COMMENTS,
       promotions: PROMOTIONS,
       leaders: LEADERS,
 
@@ -70,6 +71,13 @@ class Main extends Component {
         
       )
     }
+  
+    const DishWithId = ({match}) => {
+      return(
+          <DishdetailComponent dish={this.state.dishes.filter((dish) => dish.id === parseInt(match.params.dishId,10))[0]} 
+            comments={this.state.comments.filter((comment) => comment.dishId === parseInt(match.params.dishId,10))} />
+      );
+    };
 
     return (
       <div >
@@ -78,9 +86,14 @@ class Main extends Component {
           <Route path = '/home' component ={HomePage}/>
           //? how we specify a component with props using a function component
           //!attention to the spaces in the paths dont add extra ones
+          //! use exact to not enter  to the dishId route just the menu one
 
           <Route   exact path= '/menu' component ={() => <Menu dishes = {this.state.dishes}/>}/>
+          <Route  path = "/menu/:dishId" component={DishWithId}/>
           <Route  exact path = "/contactus" component= {Contact}/>
+          <Route  exact path = "/aboutus" component= { ( ) => <About leaders = {this.state.leaders}/>}/>
+
+
           <Redirect to = '/home'/>
         </Switch>
            <Footer></Footer>
@@ -89,6 +102,7 @@ class Main extends Component {
     );
   }
 }
+
 
 export default Main;
 
