@@ -6,7 +6,6 @@ function RenderCard({ item})
 {
     return (
         <Card >
-             {/* <CardImg src ={item.img} alt ={item.name}></CardImg> */}
              <CardImg src={item.image} alt={item.name} />
 
              <CardBody  >
