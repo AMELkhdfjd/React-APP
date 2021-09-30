@@ -2,10 +2,17 @@ import React, {Component} from 'react';
 import { Navbar, NavbarBrand } from 'reactstrap';
 import Menu from './Menucononent';
 import {DISHES} from '../shared/dishes';
+import {LEADERS} from '../shared/leaders';
+import {COMMENTS} from '../shared/comments';
+import {PROMOTIONS} from '../shared/promotions';
+
+
 import DishDetail from './DishdetailComponent';
 import Header from './headerComponent';
 import Footer from './footerCompnent';
 import Home from './homeComonent.js';
+import Contact from './Contactscomponent';
+// for the react router
 import {Switch, Route, Redirect} from 'react-router-dom';
 
 //?acts like the container for the app
@@ -40,6 +47,10 @@ class Main extends Component {
     this.state = { 
       dishes : DISHES,
       selectedDish:null,
+      Comments : COMMENTS,
+      promotions: PROMOTIONS,
+      leaders: LEADERS,
+
     };
   }
   onDishSelect(dishId){
@@ -48,20 +59,30 @@ class Main extends Component {
 
 }
   render() {
-    const Homepage = () =>{
+    const HomePage = () =>{
 
       return(
-        <Home></Home>
+        <Home dish = {this.state.dishes.filter((dish) => dish.featured)[0]}
+        promotion={this.state.promotions.filter((promo) => promo.featured)[0]}
+        leader={this.state.leaders.filter((leader) => leader.featured)[0]}
+        
+        ></Home>
+        
       )
     }
+
     return (
       <div >
        <Header></Header>
        <Switch>
-          <Route path = "/home" component ={Homepage}></Route>
-          <Route exact path= "/menu " component ={()=><Menu dishes = {this.state.dishes}></Menu>}></Route>
-          <Redirect to = "/home"></Redirect>
-         </Switch>
+          <Route path = '/home' component ={HomePage}/>
+          //? how we specify a component with props using a function component
+          //!attention to the spaces in the paths dont add extra ones
+
+          <Route   exact path= '/menu' component ={() => <Menu dishes = {this.state.dishes}/>}/>
+          <Route  exact path = "/contactus" component= {Contact}/>
+          <Redirect to = '/home'/>
+        </Switch>
            <Footer></Footer>
 
       </div>

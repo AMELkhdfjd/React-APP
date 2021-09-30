@@ -1,6 +1,7 @@
 import './App.css';
 import React, {Component} from 'react';
 import Main from './conponents/MainComponent';
+//for the react router
 import { BrowserRouter } from 'react-router-dom';
 
 // function App() {
